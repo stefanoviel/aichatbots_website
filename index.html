@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Best Indie Hackers and Solopreneurs list</title>
-    <meta name="description" content="Discover and connect with innovative indie hackers and solopreneurs on X. Explore curated list of SaaS founders and solo entrepreneurs, find new startup ideas and motivation.">
-    <meta name="keywords" content="indie makers, solopreneur, multipreneur, solo entrepreneurs, startup idea, X accounts, indie hacking, self starter, independent creator, saas founders, female founder, Twitter, innovation, entrepreneurship">
+    <title>Best AI Chatbots and Language Models Directory</title>
+    <meta name="description" content="Explore and compare the best AI chatbots and language models. Find detailed information about ChatGPT, Claude, Gemini, and other leading AI assistants to choose the right one for your needs.">
+    <meta name="keywords" content="AI chatbots, language models, ChatGPT, Claude, Gemini, AI assistants, LLMs, artificial intelligence, conversational AI, AI tools, GPT, machine learning">
     <link rel="icon" href="icon.png" type="image/webp">
     <link rel="stylesheet" href="styles.css">
     
@@ -22,8 +22,8 @@
 <body>
     <div class="container">
         <header>
-            <h1>Indie Hackers and Solopreneur X Accounts</h1>
-            <h2>Discover innovative SaaS founders and solo entrepreneurs to gain </br> new startup ideas and motivation.</h2>
+            <h1>AI Chatbots and Language Models Directory</h1>
+            <h2>Discover and compare the most capable AI assistants to find </br> the perfect match for your needs.</h2>
         </header>
         
         <div id="tagFilters"></div>
@@ -37,36 +37,36 @@
         <div class="faq-section">
             <h2>Frequently Asked Questions</h2>
             <div class="faq-item">
-                <button class="faq-question">What is an indie hacker?</button>
+                <button class="faq-question">What are AI chatbots?</button>
                 <div class="faq-answer">
-                    <p>An indie hacker is an entrepreneur who creates and runs an independent online business, typically bootstrapping their project without external funding. They focus on building profitable businesses rather than seeking rapid growth or venture capital.</p>
+                    <p>AI chatbots are computer programs powered by large language models (LLMs) that can understand and respond to human input in natural language. They can assist with various tasks including writing, analysis, coding, and general conversation.</p>
                 </div>
             </div>
             <div class="faq-item">
-                <button class="faq-question">What does solopreneur mean?</button>
+                <button class="faq-question">How do I choose the right AI assistant?</button>
                 <div class="faq-answer">
-                    <p>A solopreneur is an entrepreneur who starts and runs a business on their own, without co-founders or employees. They handle all aspects of the business themselves, from product development to marketing and customer support.</p>
+                    <p>Consider factors like your specific needs (coding, writing, analysis), pricing model (free vs paid), integration requirements, and specialized capabilities. Some models excel at technical tasks while others are better for creative work or conversation.</p>
                 </div>
             </div>
             <div class="faq-item">
-                <button class="faq-question">How do indie hackers make money?</button>
+                <button class="faq-question">Are AI chatbots free to use?</button>
                 <div class="faq-answer">
-                    <p>Indie hackers generate revenue through various means, such as selling digital products (e.g., software, ebooks, courses), offering services, implementing subscription models, or using advertising and affiliate marketing. The focus is on creating sustainable, profitable businesses rather than relying on external funding.</p>
+                    <p>Many AI chatbots offer free tiers with basic functionality, while advanced features are often available through paid subscriptions. Some models like ChatGPT and Claude have both free and premium versions with different capabilities and usage limits.</p>
                 </div>
             </div>
             <div class="faq-item">
-                <button class="faq-question">How can I become a solopreneur?</button>
+                <button class="faq-question">How safe and private are AI chatbots?</button>
                 <div class="faq-answer">
-                    <p>To become a solopreneur, start by identifying a problem you can solve or a niche you can serve. Develop your skills, create a minimum viable product or service, and start marketing to your target audience. Focus on building a sustainable business model and be prepared to wear many hats as you handle all aspects of your business.</p>
+                    <p>Privacy and safety vary by provider. Most major AI chatbots have strict privacy policies and data handling practices. However, it's important to review each service's terms and avoid sharing sensitive personal information in conversations with AI.</p>
                 </div>
             </div>
         </div>
 
         <div id="joinCommunity">
-            <h3>Help Us Grow Our Directory</h3>
-            <p>Know an inspiring indie hacker, solopreneur, or creator we missed? Let us know!</p>
-            <p>Think you're a good fit for the directory? Share your own account!</p>
-            <a href="submit.html">Submit a Creator or Your Account →</a>
+            <h3>Help Us Improve Our Directory</h3>
+            <p>Know of a new AI chatbot or assistant that should be listed? Let us know!</p>
+            <p>Have experience with these AI tools? Share your insights!</p>
+            <a href="submit.html">Submit a New AI Assistant or Review →</a>
         </div>
         
         <p class="made-by">Curated with ❤️ by @Stefan0Vl</p>
@@ -78,14 +78,19 @@
         let selectedTags = new Set();
 
         function loadAccounts() {
-            fetch('indie_list.csv')
+            fetch('list.csv')
                 .then(response => response.text())
                 .then(data => {
                     const rows = data.split('\n').slice(1);
                     accounts = rows.map(row => {
-                        const [Name, ImageUrl, TwitterHandle, Gender, Industry, Niche] = row.split(',');
-                        return { Name, ImageUrl, TwitterHandle, Gender, Industry, Niche };
-                    }).filter(account => account.Name && account.TwitterHandle && account.ImageUrl);
+                        const matches = row.match(/(".*?"|[^,]+)/g);
+                        if (!matches) return null;
+                        
+                        const [Name, Company, Description, ImageLink, Website] = matches.map(value => 
+                            value.replace(/^"(.*)"$/, '$1')
+                        );
+                        return {Name, Company, Description, ImageLink, Website};
+                    }).filter(account => account && account.Name && account.ImageLink);
                     renderAccounts(accounts.slice(0, displayedAccounts));
                     setupTagFilters();
                     setupSeeMoreButton();
@@ -99,14 +104,22 @@
             accountsToRender.forEach(account => {
                 const accountDiv = document.createElement('div');
                 accountDiv.className = 'account';
+                
+                // Add error handling for images
+                const imgHtml = `
+                    <img src="${account.ImageLink}" 
+                         alt="${account.ImageLink} hey" 
+                         onerror="this.onerror=null; this.src='placeholder.png';"
+                    >
+                `;
+                
                 accountDiv.innerHTML = `
-                    <img src="${account.ImageUrl}" alt="${account.Name}">
+                    ${imgHtml}
                     <div class="account-name">${account.Name}</div>
-                    <a href="${account.TwitterHandle}" target="_blank" class="account-handle">@${account.TwitterHandle.split('/').pop()}</a>
+                    <p class="account-description">${account.Description}</p>
+                    <a href="${account.Website}" target="_blank" class="try-button">Try ${account.Name} →</a>
                     <div class="tags">
-                        ${account.Gender.toLowerCase() === 'woman' ? `<span class="tag">${account.Gender}</span>` : ''}
-                        <span class="tag">${account.Industry}</span>
-                        ${account.Niche ? `<span class="tag">${account.Niche}</span>` : ''}
+                        <span class="tag">${account.Company}</span>
                     </div>
                 `;
                 directory.appendChild(accountDiv);

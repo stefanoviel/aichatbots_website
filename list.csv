@@ -1,0 +1,13 @@
+Name,Company,Description,ImageLink,Website
+ChatGPT,OpenAI,"Large language model known for coding, text generation, and analysis capabilities. Available in free and Plus versions.",https://upload.wikimedia.org/wikipedia/commons/e/ef/ChatGPT-Logo.svg,https://chat.openai.com
+Claude,Anthropic,"Advanced AI assistant known for nuanced analysis, writing, and ethical considerations. Available in Claude 3 family versions including Opus, Sonnet, and Haiku.",https://upload.wikimedia.org/wikipedia/commons/5/58/Anthropic_logo.svg,https://claude.ai
+Perplexity AI,Perplexity Labs,"AI search engine and chatbot hybrid that provides real-time information with cited sources.",https://perplexity.ai/favicon.png,https://perplexity.ai
+Gemini,Google,"Formerly Bard, integrated with Google's ecosystem. Offers multiple versions (Ultra, Pro, Nano) with varying capabilities.",https://upload.wikimedia.org/wikipedia/commons/4/4a/Google_Bard_logo.svg,https://gemini.google.com
+Copilot,Microsoft,"AI assistant integrated into Microsoft products, powered by OpenAI technology. Focused on productivity and enterprise use.",https://upload.wikimedia.org/wikipedia/commons/a/a6/Microsoft_logo_%282012%29.svg,https://copilot.microsoft.com
+Pi,Inflection AI,"Conversational AI focused on natural dialogue and emotional intelligence. Designed for more personal interactions.",https://pi.ai/favicon.ico,https://pi.ai
+LLaMA,Meta,"Open source model family that serves as foundation for many other AI applications. Multiple versions available for different use cases.",https://upload.wikimedia.org/wikipedia/commons/e/e0/Meta_Platforms_Inc._logo.svg,https://ai.meta.com/llama
+Mistral,Mistral AI,"Efficient language model available in both open source and commercial versions. Known for strong performance and growing ecosystem.",https://mistral.ai/favicon.png,https://mistral.ai
+Character.AI,Character AI,"Platform for creating and chatting with AI personalities, including historical figures, fictional characters, and custom personas.",https://character.ai/favicon.ico,https://character.ai
+Replika,Luka Inc.,"AI companion focused on emotional support and personal conversations. Offers customizable AI friend experiences.",https://replika.ai/favicon.ico,https://replika.ai
+Poe,Quora,"Platform that provides access to multiple AI models including GPT and Claude in one interface.",https://poe.com/favicon.ico,https://poe.com
+
