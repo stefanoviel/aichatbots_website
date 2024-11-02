@@ -66,9 +66,19 @@ h2 {
     padding: 20px 0;
 }
 .account-name {
+    font-size: 24px;
     font-weight: bold;
-    font-size: 1.1em;
     margin-bottom: 5px;
+}
+.company-name {
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+.account-description {
+    flex-grow: 1;
+    margin: 10px 0;
+    line-height: 1.5;
 }
 .account-handle {
     color: #1DA1F2;
@@ -144,57 +154,21 @@ h2 {
     }
 }
 
-.tags {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 5px;
-    margin-top: 0;
-    padding-top: 0;
-}
-
-.tag {
-    background-color: #E1E8ED;
-    color: #14171A;
-    padding: 2px 8px;
-    border-radius: 12px;
-    font-size: 12px;
-    margin-right: 4px;
-}
-
-
-.tag-filter {
-    background-color: #333333; /* Much darker background color */
-    color: #ffffff; /* White text for better contrast */
-    border: none;
-    border-radius: 16px;
-    padding: 6px 12px;
-    margin: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.tag-filter:hover {
-    background-color: #444444; /* Slightly lighter on hover */
-}
-
-.tag-filter.active {
-    background-color: #1DA1F2; /* Twitter blue when active */
+.try-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #2d6ff4;  /* Bright blue - more visible */
     color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    text-align: center;
+    margin-top: 15px;
 }
 
-.gender-tag {
-    background-color: #FF69B4;
-    color: #fff;
+.try-button:hover {
+    background-color: #4d84f7;
 }
-
-.niche-tag {
-    background-color: #4CAF50;
-    color: #fff;
-}
-
-
-
 
 .faq-section {
     margin: 40px auto;

@@ -105,22 +105,16 @@
                 const accountDiv = document.createElement('div');
                 accountDiv.className = 'account';
                 
-                // Add error handling for images
-                const imgHtml = `
+                accountDiv.innerHTML = `
                     <img src="${account.ImageLink}" 
-                         alt="${account.ImageLink} hey" 
+                         alt="${account.Name}" 
                          onerror="this.onerror=null; this.src='placeholder.png';"
                     >
-                `;
-                
-                accountDiv.innerHTML = `
-                    ${imgHtml}
-                    <div class="account-name">${account.Name}</div>
+                    <div class="account-name">${account.Name}
+                        <span class="company-name">by ${account.Company}</span>
+                    </div>
                     <p class="account-description">${account.Description}</p>
                     <a href="${account.Website}" target="_blank" class="try-button">Try ${account.Name} →</a>
-                    <div class="tags">
-                        <span class="tag">${account.Company}</span>
-                    </div>
                 `;
                 directory.appendChild(accountDiv);
             });
