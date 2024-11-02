@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Indie Hackers and Solopreneurs list</title>
+    <meta name="description" content="Discover and connect with innovative indie hackers and solopreneurs on X. Explore curated list of SaaS founders and solo entrepreneurs, find new startup ideas and motivation.">
+    <meta name="keywords" content="indie makers, solopreneur, multipreneur, solo entrepreneurs, startup idea, X accounts, indie hacking, self starter, independent creator, saas founders, female founder, Twitter, innovation, entrepreneurship">
+    <link rel="icon" href="icon.png" type="image/webp">
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-M5K1LGF3Y1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-M5K1LGF3Y1');
+    </script>
+    <!-- End Google Analytics -->
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Indie Hackers and Solopreneur X Accounts</h1>
+            <h2>Discover innovative SaaS founders and solo entrepreneurs to gain </br> new startup ideas and motivation.</h2>
+        </header>
+        
+        <div id="tagFilters"></div>
+        
+        <div id="directory"></div>
+        
+        <a href="#" id="seeMoreBtn">EXPLORE MORE</a>
+        
+
+        
+        <div class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <button class="faq-question">What is an indie hacker?</button>
+                <div class="faq-answer">
+                    <p>An indie hacker is an entrepreneur who creates and runs an independent online business, typically bootstrapping their project without external funding. They focus on building profitable businesses rather than seeking rapid growth or venture capital.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">What does solopreneur mean?</button>
+                <div class="faq-answer">
+                    <p>A solopreneur is an entrepreneur who starts and runs a business on their own, without co-founders or employees. They handle all aspects of the business themselves, from product development to marketing and customer support.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">How do indie hackers make money?</button>
+                <div class="faq-answer">
+                    <p>Indie hackers generate revenue through various means, such as selling digital products (e.g., software, ebooks, courses), offering services, implementing subscription models, or using advertising and affiliate marketing. The focus is on creating sustainable, profitable businesses rather than relying on external funding.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">How can I become a solopreneur?</button>
+                <div class="faq-answer">
+                    <p>To become a solopreneur, start by identifying a problem you can solve or a niche you can serve. Develop your skills, create a minimum viable product or service, and start marketing to your target audience. Focus on building a sustainable business model and be prepared to wear many hats as you handle all aspects of your business.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="joinCommunity">
+            <h3>Help Us Grow Our Directory</h3>
+            <p>Know an inspiring indie hacker, solopreneur, or creator we missed? Let us know!</p>
+            <p>Think you're a good fit for the directory? Share your own account!</p>
+            <a href="submit.html">Submit a Creator or Your Account →</a>
+        </div>
+        
+        <p class="made-by">Curated with ❤️ by @Stefan0Vl</p>
+    </div>
+
+    <script>
+        let accounts = [];
+        let displayedAccounts = 20;
+        let selectedTags = new Set();
+
+        function loadAccounts() {
+            fetch('indie_list.csv')
+                .then(response => response.text())
+                .then(data => {
+                    const rows = data.split('\n').slice(1);
+                    accounts = rows.map(row => {
+                        const [Name, ImageUrl, TwitterHandle, Gender, Industry, Niche] = row.split(',');
+                        return { Name, ImageUrl, TwitterHandle, Gender, Industry, Niche };
+                    }).filter(account => account.Name && account.TwitterHandle && account.ImageUrl);
+                    renderAccounts(accounts.slice(0, displayedAccounts));
+                    setupTagFilters();
+                    setupSeeMoreButton();
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function renderAccounts(accountsToRender) {
+            const directory = document.getElementById('directory');
+            directory.innerHTML = '';
+            accountsToRender.forEach(account => {
+                const accountDiv = document.createElement('div');
+                accountDiv.className = 'account';
+                accountDiv.innerHTML = `
+                    <img src="${account.ImageUrl}" alt="${account.Name}">
+                    <div class="account-name">${account.Name}</div>
+                    <a href="${account.TwitterHandle}" target="_blank" class="account-handle">@${account.TwitterHandle.split('/').pop()}</a>
+                    <div class="tags">
+                        ${account.Gender.toLowerCase() === 'woman' ? `<span class="tag">${account.Gender}</span>` : ''}
+                        <span class="tag">${account.Industry}</span>
+                        ${account.Niche ? `<span class="tag">${account.Niche}</span>` : ''}
+                    </div>
+                `;
+                directory.appendChild(accountDiv);
+            });
+        }
+
+        function setupTagFilters() {
+            const tagFilters = document.getElementById('tagFilters');
+            const allTags = new Set();
+
+            accounts.forEach(account => {
+                if (account.Gender.toLowerCase() === 'woman') allTags.add('Woman');
+                allTags.add(account.Industry);
+                if (account.Niche) allTags.add(account.Niche);
+            });
+
+            allTags.forEach(tag => {
+                const tagButton = document.createElement('button');
+                tagButton.textContent = tag;
+                tagButton.className = 'tag-filter';
+                tagButton.addEventListener('click', () => toggleTag(tag, tagButton));
+                tagFilters.appendChild(tagButton);
+            });
+        }
+
+        function toggleTag(tag, button) {
+            if (selectedTags.has(tag)) {
+                selectedTags.delete(tag);
+                button.classList.remove('active');
+            } else {
+                selectedTags.add(tag);
+                button.classList.add('active');
+            }
+            filterAccounts();
+        }
+
+        function filterAccounts() {
+            if (selectedTags.size === 0) {
+                renderAccounts(accounts.slice(0, displayedAccounts));
+                updateSeeMoreButtonVisibility(accounts.length);
+            } else {
+                const filteredAccounts = accounts.filter(account => 
+                    (account.Gender.toLowerCase() === 'woman' && selectedTags.has('Woman')) ||
+                    selectedTags.has(account.Industry) ||
+                    (account.Niche && selectedTags.has(account.Niche))
+                );
+                renderAccounts(filteredAccounts.slice(0, displayedAccounts));
+                updateSeeMoreButtonVisibility(filteredAccounts.length);
+            }
+        }
+
+        function setupSeeMoreButton() {
+            const seeMoreBtn = document.getElementById('seeMoreBtn');
+            seeMoreBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                displayedAccounts = accounts.length;
+                filterAccounts();
+                this.classList.add('hidden');
+            });
+            updateSeeMoreButtonVisibility(accounts.length);
+        }
+
+        function updateSeeMoreButtonVisibility(totalAccounts) {
+            const seeMoreBtn = document.getElementById('seeMoreBtn');
+            if (totalAccounts > displayedAccounts) {
+                seeMoreBtn.classList.remove('hidden');
+            } else {
+                seeMoreBtn.classList.add('hidden');
+            }
+        }
+
+        loadAccounts();
+
+        // FAQ Collapsible
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    const isActive = question.classList.contains('active');
+                    
+                    // Close all other answers
+                    faqQuestions.forEach(q => {
+                        if (q !== question) {
+                            q.classList.remove('active');
+                            q.nextElementSibling.style.maxHeight = null;
+                        }
+                    });
+                    
+                    // Toggle current answer
+                    question.classList.toggle('active');
+                    if (!isActive) {
+                        answer.style.maxHeight = answer.scrollHeight + "px";
+                    } else {
+                        answer.style.maxHeight = null;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

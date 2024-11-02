@@ -1,0 +1,254 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.container {
+    max-width: 1200px;
+    width: 100%;
+}
+header {
+    margin-bottom: 60px;
+}
+h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+h2 {
+    font-size: 1.5em;
+    color: #ccc;
+    margin-bottom: 40px;
+}
+#filterInput {
+    width: 100%;
+    max-width: 600px;
+    padding: 15px;
+    font-size: 16px;
+    margin-bottom: 30px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background-color: #111;
+    color: #fff;
+}
+#directory {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 50px;
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+.account {
+    background-color: #111;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.account img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+}
+.account-name {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+.account-handle {
+    color: #1DA1F2;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 20px;
+}
+#seeMoreBtn {
+    display: block;
+    width: 200px;
+    margin: 30px auto;
+    padding: 15px 20px;
+    background-color: #1DA1F2;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+#seeMoreBtn:hover {
+    background-color: #0c85d0;
+}
+#seeMoreBtn.hidden {
+    display: none;
+}
+#joinCommunity {
+    background-color: #111;
+    padding: 30px;
+    border-radius: 10px;
+    margin: 50px auto;
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#joinCommunity h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+#joinCommunity a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #1DA1F2;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+#joinCommunity a:hover {
+    background-color: #0c85d0;
+}
+.made-by {
+    margin-top: 30px;
+    font-size: 0.9em;
+    color: #ccc;
+}
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2em;
+    }
+    h2 {
+        font-size: 1.2em;
+    }
+    #directory {
+        grid-template-columns: 1fr;
+    }
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.tag {
+    background-color: #E1E8ED;
+    color: #14171A;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    margin-right: 4px;
+}
+
+
+.tag-filter {
+    background-color: #333333; /* Much darker background color */
+    color: #ffffff; /* White text for better contrast */
+    border: none;
+    border-radius: 16px;
+    padding: 6px 12px;
+    margin: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.tag-filter:hover {
+    background-color: #444444; /* Slightly lighter on hover */
+}
+
+.tag-filter.active {
+    background-color: #1DA1F2; /* Twitter blue when active */
+    color: white;
+}
+
+.gender-tag {
+    background-color: #FF69B4;
+    color: #fff;
+}
+
+.niche-tag {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+
+
+
+.faq-section {
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #111;
+    border-radius: 8px;
+    max-width: 800px;
+    width: 90%;
+}
+
+.faq-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #fff;
+    text-align: center;
+}
+
+.faq-item {
+    margin-bottom: 10px;
+}
+
+.faq-question {
+    width: 100%;
+    background-color: #222;
+    color: #fff;
+    border: none;
+    padding: 15px;
+    text-align: left;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.faq-question:hover {
+    background-color: #333;
+}
+
+.faq-question:after {
+    content: '\002B';
+    color: #fff;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+.faq-question.active:after {
+    content: "\2212";
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: #1a1a1a;
+}
+
+.faq-answer p {
+    padding: 15px;
+    color: #ccc;
+    font-size: 16px;
+    line-height: 1.5;
+}
