@@ -30,7 +30,7 @@
         
         <div id="directory"></div>
         
-        <a href="#" id="seeMoreBtn">EXPLORE MORE</a>
+        <!-- <a href="#" id="seeMoreBtn">EXPLORE MORE</a> -->
         
 
         
@@ -62,12 +62,12 @@
             </div>
         </div>
 
-        <div id="joinCommunity">
+        <!-- <div id="joinCommunity">
             <h3>Help Us Improve Our Directory</h3>
             <p>Know of a new AI chatbot or assistant that should be listed? Let us know!</p>
             <p>Have experience with these AI tools? Share your insights!</p>
             <a href="submit.html">Submit a New AI Assistant or Review →</a>
-        </div>
+        </div> -->
         
         <p class="made-by">Curated with ❤️ by @Stefan0Vl</p>
     </div>
@@ -110,11 +110,13 @@
                          alt="${account.Name}" 
                          onerror="this.onerror=null; this.src='placeholder.png';"
                     >
-                    <div class="account-name">${account.Name}
-                        <span class="company-name">by ${account.Company}</span>
+                    <div class="account-content">
+                        <div class="account-name">${account.Name}
+                            <span class="company-name">by ${account.Company}</span>
+                        </div>
+                        <p class="account-description">${account.Description}</p>
+                        <a href="${account.Website}" target="_blank" class="try-button">Try ${account.Name} →</a>
                     </div>
-                    <p class="account-description">${account.Description}</p>
-                    <a href="${account.Website}" target="_blank" class="try-button">Try ${account.Name} →</a>
                 `;
                 directory.appendChild(accountDiv);
             });
